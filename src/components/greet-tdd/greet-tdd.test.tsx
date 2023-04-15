@@ -15,6 +15,6 @@ test("Greet-tdd renders correctly", () =>{
 
 test("Greet-tdd with name", () => {
     render(<Greet name='Yoga' />);
-    const textElement = screen.getByText('Hello Yoga!');
+    const textElement = screen.getByText('Hello Yoga');
     expect(textElement).toBeInTheDocument();
 })
