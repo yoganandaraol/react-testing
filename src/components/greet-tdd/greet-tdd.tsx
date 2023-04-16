@@ -1,8 +1,6 @@
 import React from 'react';
+import { GreetProps } from './greet.types';
 
-type GreetProps = {
-    name?: string
-}
 
 export const Greet = (props: GreetProps) => {
     return (

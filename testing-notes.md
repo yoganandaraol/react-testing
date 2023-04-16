@@ -170,3 +170,59 @@ it('should return false', () => {
   expect(false).toBeFalsy();
 });
 ```
+
+### Code Coverage Reporting
+
+Code coverage is a metric to assess the software code is tested.
+* Statement Coverage
+* Branches Coverage
+* Functions Coverage
+* Lines Coverage
+
+###How to update code coverage report?
+
+  >Add following line in `package.json` under `scripts`
+  >>```
+  >>"coverage": "react-scripts test --coverage --watchAll"
+  >>```
+  >then run
+  >>```
+  >>npm run coverage
+  >>```
+  ><br />
+  
+  Example for Coverage Report
+
+File                      | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+--------------------------|---------|----------|---------|---------|-------------------
+All files                 |   31.25 |        0 |      60 |   31.25 |                   
+ src                      |    8.33 |        0 |   33.33 |    8.33 |                   
+  ->App.tsx                 |     100 |      100 |     100 |     100 |                   
+  ->index.tsx               |       0 |      100 |     100 |       0 | 7-19              
+  ->reportWebVitals.ts      |       0 |        0 |       0 |       0 | 3-10              
+ src/components/greet     |     100 |      100 |     100 |     100 |                   
+  ->greet.tsx               |     100 |      100 |     100 |     100 |                   
+ src/components/greet-tdd |     100 |      100 |     100 |     100 |                   
+  ->greet-tdd.tsx           |     100 |      100 |     100 |     100 |                   
+
+<br />
+
+> alternatively to get the coverage report only from components 
+  >>```
+  >>"coverage": "react-scripts test --coverage --watchAll" --collectCoverageFrom='src/components/**/*.{tx,tsx}'"
+  >>```
+  >then run
+  >>```
+  >>npm run coverage
+  >>```
+  ><br />
+  
+  Example for Coverage Report
+  File            | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+------------------|---------|----------|---------|---------|-------------------
+All files         |     100 |      100 |     100 |     100 |                   
+ greet            |     100 |      100 |     100 |     100 |                   
+  ->greet.tsx     |     100 |      100 |     100 |     100 |                   
+ greet-tdd        |     100 |      100 |     100 |     100 |                   
+  ->greet-tdd.tsx |     100 |      100 |     100 |     100 |                   
+
