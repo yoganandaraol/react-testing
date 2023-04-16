@@ -54,6 +54,8 @@ module.exports = {
 
 # Jest
 
+### Test Filetering
+
 `test.only` is used to run a specific test case in isolation, ignoring the rest of the test cases. This is useful when you want to quickly run a single test case that you are working on without running the entire test suite. Here's an example:
 
 ```javscript
@@ -89,3 +91,55 @@ test('should multiply two numbers', () => {
 });
 ```
 In this example, the test case with the test.skip method will be skipped during the test run, and the other test cases will be executed.
+
+### Test Grouping
+
+`describe` method used to group the test cases
+
+describe accepts two arguments
+1. first argument is the Group Name
+2. second argument is a fucntion that contains the expectations to test
+
+```javascript
+describe('Math', () => {
+  test('adds two numbers', () => {
+    expect(1 + 2).toBe(3);
+  });
+
+  test('multiplies two numbers', () => {
+    expect(2 * 3).toBe(6);
+  });
+});
+```
+
+`describe.skip` and `describe.only` also used as in `test` method
+
+#### Nested Grouping
+
+```javascript
+describe('Math', () => {
+  describe('Addition', () => {
+    test('add two numbers', () => {
+      expect(1 + 2).toBe(3);
+    });
+  
+    test('adds a positive and negative number', () => {
+      expect(2 + (-3)).toBe(-1);
+    });
+  });
+  
+  describe('Multiplication', () => {
+    test('multiplies two positive numbers', () => {
+      expect(2 * 3).toBe(6);
+    });
+  
+    test('multiplies a positive and negative number', () => {
+      expect(2 * (-3)).toBe(-6);
+    });
+  });
+});
+```
+
+>Note: Grouping and Test Suites are similar.. but Test Suite refers to single file, where as Grouping refers to different categories of test cases in same file.
+
+
