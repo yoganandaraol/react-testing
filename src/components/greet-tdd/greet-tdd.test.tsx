@@ -10,7 +10,7 @@ import { Greet } from './greet-tdd';
 describe('Greet-Tdd', () => {
     test("renders correctly", () => {
         render(<Greet />);
-        const textElement = screen.getByText('Hello');
+        const textElement = screen.getByText('Hello Guest');
         expect(textElement).toBeInTheDocument();
     })
 

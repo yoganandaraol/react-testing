@@ -234,3 +234,19 @@ All files         |     100 |      100 |     100 |     100 |
   >>```
   > above configuration ignores all files in components folder which of ending with the pattern {types,stories,constants,test,spec}.{ts,tsx}
 
+<br />
+### Coverage Threshold
+
+with the below configuration in `package.json` file we can set coverage threshold
+```
+"jest": {
+    "coverageThreshold": {
+      "global": {
+        "branches": 80,
+        "functions": 80,
+        "lines": 80,
+        "statements": -10
+      }
+    }
+  }
+```
