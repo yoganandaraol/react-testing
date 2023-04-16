@@ -142,4 +142,31 @@ describe('Math', () => {
 
 >Note: Grouping and Test Suites are similar.. but Test Suite refers to single file, where as Grouping refers to different categories of test cases in same file.
 
+<br />
+### File Name Conventions:
 
+Files with below formats considered as test cases as per jest.
+  * *.test.js or *.test.tsx 
+  * *.spec.js or *.spec.tsx
+  * *.js or *.tsx files in `__tests__` folders
+
+
+instead of `test` method we can also use `it` method to define a test case.
+
+`test.only` - is same as -> `fit`
+`test.skip` - is same as -> `xit` 
+
+
+In Jest, `test()` and `it()` functions are used to define a test case. Both functions are used to define the same thing, but `test()` is an alias for `it()`. So, both functions can be used interchangeably to define a test case.
+
+For example, the following code defines a test case using both `test()` and `it()`:
+
+```javascript
+test('should return true', () => {
+  expect(true).toBeTruthy();
+});
+
+it('should return false', () => {
+  expect(false).toBeFalsy();
+});
+```
