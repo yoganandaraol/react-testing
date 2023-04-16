@@ -1,4 +1,4 @@
-React Testing
+# React Testing
 
 
 * `create-react-app` makes jest available to the projects globally 
@@ -42,7 +42,7 @@ module.exports = {
 
 ---
 
-TDD - Test Driven Development
+#### TDD - Test Driven Development
 
 * TDD follows - Red Green Testing technique
 * In TDD, 
@@ -52,3 +52,40 @@ TDD - Test Driven Development
 
 ---
 
+# Jest
+
+`test.only` is used to run a specific test case in isolation, ignoring the rest of the test cases. This is useful when you want to quickly run a single test case that you are working on without running the entire test suite. Here's an example:
+
+```javscript
+test.only('should add two numbers', () => {
+  expect(add(2, 3)).toBe(5);
+});
+
+test('should subtract two numbers', () => {
+  expect(subtract(3, 2)).toBe(1);
+});
+
+test('should multiply two numbers', () => {
+  expect(multiply(2, 3)).toBe(6);
+});
+```
+In this example, only the test case with the test.only method will be executed, and the other test cases will be skipped.
+
+<br />
+
+`test.skip` is used to skip a specific test case, ignoring it completely during the test run. This is useful when you have a test case that is currently failing or not implemented, but you don't want to remove it from the test suite. Here's an example:
+
+```javscript
+test('should add two numbers', () => {
+  expect(add(2, 3)).toBe(5);
+});
+
+test.skip('should subtract two numbers', () => {
+  expect(subtract(3, 2)).toBe(1);
+});
+
+test('should multiply two numbers', () => {
+  expect(multiply(2, 3)).toBe(6);
+});
+```
+In this example, the test case with the test.skip method will be skipped during the test run, and the other test cases will be executed.
