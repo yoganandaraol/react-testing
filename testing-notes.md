@@ -226,3 +226,11 @@ All files         |     100 |      100 |     100 |     100 |
  greet-tdd        |     100 |      100 |     100 |     100 |                   
   ->greet-tdd.tsx |     100 |      100 |     100 |     100 |                   
 
+<br />
+
+> to ignore specific files from coverage report
+  >>```
+  >>"coverage": "react-scripts test --coverage --watchAll --collectCoverageFrom='src/components/**/*.{tx,tsx}' --collectCoverageFrom='!src/components/**/*.{types,stories,constants,test,spec}.{ts,tsx}'"
+  >>```
+  > above configuration ignores all files in components folder which of ending with the pattern {types,stories,constants,test,spec}.{ts,tsx}
+
