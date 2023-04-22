@@ -32,3 +32,10 @@ test('object comparision - Case sensitive', () => {
     data['lname'] = 'L';
     expect(data).toEqualCaseInsensitive({ fname: 'yoga', lname: 'l' });
 });
+
+test('case insensitive object comparison', () => {
+    const obj1 = { name: 'YogA', age: 30 };
+    const obj2 = { NAME: 'yoga', AGE: 30 };
+    expect(obj1).toEqualCaseInsensitive(obj2);
+});
+  
