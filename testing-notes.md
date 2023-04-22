@@ -255,7 +255,7 @@ with the below configuration in `package.json` file we can set coverage threshol
 ```
 ---
 
-### Assertions
+## Assertions
 
 Assertions decide if a test passes or fails.
 
@@ -272,10 +272,12 @@ expect(textElement).toBeInTheDocument();
 
 In this example `expect(textElement)` comes with a matcher function called `toBeInTheDocument()` which optionally accepts a parameter.
 
-#### Different Matcher Functions
+### Matcher Functions
 
 > reference from - https://jestjs.io/docs/using-matchers
 
+
+#### &#8594; .toBe
 ```javascript
 test('two plus two is four', () => {
   expect(2 + 2).toBe(4);
@@ -295,6 +297,7 @@ test('two plus two is four', () => {
 * If you want to check the value of an object, use `toEqual`
 * `toEqual` **recursively** checks every field of an object or array
 
+#### &#8594; .toEqual
 ```javascript
 test('object comparision - Case sensitive', () => {
   const data = { fname: 'Yoga' };
@@ -308,6 +311,7 @@ test('object comparision - Case sensitive', () => {
 
 here is an example.
 
+#### &#8594; extend .toEqual
 ```javascript
 expect.extend({
   toEqualCaseInsensitive(received, expected) {
@@ -333,5 +337,115 @@ test('object comparision - Case sensitive', () => {
   const data = { fname: 'Yoga' };
   data['lname'] = 'L';
   expect(data).toEqualCaseInsensitive({ fname: 'yoga', lname: 'l'});
+});
+```
+
+```javascript
+test('case insensitive object comparison', () => {
+    const obj1 = { name: 'YogA', age: 30 };
+    const obj2 = { NAME: 'yoga', AGE: 30 };
+    expect(obj1).toEqualCaseInsensitive(obj2);
+});
+```
+
+#### &#8594; Truthiness
+
+    `.toBeNull`       matches only `null`
+    `.toBeUndefined`  matches only `undefined`
+    `.toBeDefined`    is the opposite of `toBeUndefined`
+    `.toBeTruthy`     matches anything that an if statement treats as `true`
+    `.toBeFalsy`      matches anything that an if statement treats as `false`
+    `.toMatch`        matches anything fits to the regular expression treats as `true` else `false`
+
+```javascript
+describe('Truthiness matcher', () => {
+
+    test('null check', () => {
+        const name = null;
+        expect(name).toBeNull();
+        expect(name).toBe(null);
+    });
+
+    test('const undefined check', () => {
+        const name = undefined;
+        expect(name).toBeUndefined();
+        expect(name).not.toBeDefined();
+    });
+
+    test('let undefined check', () => {
+        let name;
+        expect(name).toBeUndefined();
+        expect(name).not.toBeDefined();
+    });
+
+    test('const defined check', () => {
+        const name = 'Yoga';
+        expect(name).toBeDefined();
+        expect(name).not.toBeUndefined();
+    });
+
+    test('let defined check', () => {
+        let name = '';
+        expect(name).toBeDefined();
+        expect(name).not.toBeUndefined();
+    });
+
+    test('truthy check', () => {
+        const name = 'Yoga';
+        expect(name).toBeTruthy();
+        expect(name).not.toBeFalsy();
+    });
+});
+
+describe('Regular Expression matcher', () => {
+    test('truthy check with regex', () => {
+        const name = 'Yoga';
+        expect(name).toMatch(/[Yy]/); // Contains capital Y or small y
+        expect(name).toMatch(/[Yy][a-zA-Z]/); // Starts capital Y or small y
+        expect(name).not.toMatch(/[y][a-zA-Z]/); // Starts capital Y
+        expect(name).toMatch(/[Y][a-zA-Z]/); // Starts capital Y
+    });
+});
+```
+
+#### &#8594; Numbers
+
+    `.toBeGreaterThan`          calculated value greater than expected value
+    `.toBeGreaterThanOrEqual`   calculated value greater than or equal to expected value
+    `.toBeLessThan`             calculated value less than expected value
+    `.toBeLessThanOrEqual`      calculated value less than or equal to expected value
+    `.toBe`                     matches anything that exactly equals to treats as `true` else `false`
+    `.toEqual`                  matches anything that exactly equals to treats as `true` else `false`
+    `.toBeCloseTo`              floating point equality check with ignored tiny rounding errors
+
+> **Note**: For numbers `.toBe` and `.toEqual` behaves exactly same.
+
+```javascript
+describe('Numbers matcher', () => {
+    test('comparision match', () => {
+        const age = 30;
+        expect(age).toBe(30);
+        expect(age).toEqual(30);
+        expect(age).toBeGreaterThan(29);
+        expect(age).toBeGreaterThanOrEqual(30);
+        expect(age).toBeGreaterThanOrEqual(28);
+        expect(age).toBeLessThan(39);
+        expect(age).toBeLessThanOrEqual(30);
+        expect(age).toBeLessThanOrEqual(69);
+    });
+
+    test('float value comparision match', () => {
+        const sum = 20.12345 + 12.3245;
+        expect(sum).toBe(32.44795);
+        expect(sum).toEqual(32.44795);
+        expect(sum).toBeCloseTo(32.44799);
+        expect(sum).toBeCloseTo(32.4479);
+        expect(sum).toBeCloseTo(32.44796);
+        expect(sum).toBeCloseTo(32.44794);
+        expect(sum).toBeCloseTo(32.448);
+        expect(sum).toBeCloseTo(32.45);
+        expect(sum).not.toBeCloseTo(32.46);
+        expect(sum).not.toBeCloseTo(32.5);
+    });
 });
 ```
