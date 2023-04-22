@@ -1,4 +1,4 @@
-# React Testing
+# React Testing using Jest
 
 
 * `create-react-app` makes jest available to the projects globally 
@@ -449,3 +449,49 @@ describe('Numbers matcher', () => {
     });
 });
 ```
+
+#### &#8594; Arrays and Iterables
+
+
+    `.toContain`          check if an array or iterable contains a particular item
+
+```javascript
+describe('Arrays and Iterables matchers', () => {
+    const testLibraries = [
+        'Jest',
+        'Mocha',
+        'Jasmine',
+        'Karma',
+        'Ava',
+        'Tape',
+        'QUnit',
+        'Protractor',
+        'TestCafé',
+        'Cypress'
+    ]
+
+    test('test libraries list has "jest" on it', () => {
+        expect(testLibraries).toContain('Jest');
+        expect(new Set(testLibraries)).toContain('Jest');
+    });
+});
+```
+
+#### &#8594; Exceptions 
+
+```javascript
+describe('Exception matchers', () => {
+    function compileReactCode() {
+        throw new Error('you are using the incompatible Node version!');
+    }
+
+    test('compiling react application goes as expected', () => {
+        expect(() => compileReactCode()).toThrow();
+        expect(() => compileReactCode()).toThrow(Error);
+        expect(() => compileReactCode()).toThrow('you are using the incompatible Node version!');
+        expect(() => compileReactCode()).toThrow(/Node/); // Regex
+    });
+});
+```
+<hr />
+

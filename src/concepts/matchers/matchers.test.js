@@ -122,3 +122,36 @@ describe('Numbers matcher', () => {
         expect(sum).not.toBeCloseTo(32.5);
     });
 });
+
+describe('Arrays and Iterables matchers', () => {
+    const testLibraries = [
+        'Jest',
+        'Mocha',
+        'Jasmine',
+        'Karma',
+        'Ava',
+        'Tape',
+        'QUnit',
+        'Protractor',
+        'TestCafé',
+        'Cypress'
+    ]
+
+    test('test libraries list has "jest" on it', () => {
+        expect(testLibraries).toContain('Jest');
+        expect(new Set(testLibraries)).toContain('Jest');
+    });
+});
+
+describe('Exception matchers', () => {
+    function compileReactCode() {
+        throw new Error('you are using the incompatible Node version!');
+    }
+
+    test('compiling react application goes as expected', () => {
+        expect(() => compileReactCode()).toThrow();
+        expect(() => compileReactCode()).toThrow(Error);
+        expect(() => compileReactCode()).toThrow('you are using the incompatible Node version!');
+        expect(() => compileReactCode()).toThrow(/Node/); // Regex
+    });
+});
