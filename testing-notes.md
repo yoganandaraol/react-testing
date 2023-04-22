@@ -171,7 +171,7 @@ it('should return false', () => {
   expect(false).toBeFalsy();
 });
 ```
-
+---
 ### Code Coverage Reporting
 
 Code coverage is a metric to assess the software code is tested.
@@ -179,6 +179,7 @@ Code coverage is a metric to assess the software code is tested.
 * Branches Coverage
 * Functions Coverage
 * Lines Coverage
+---
 
 ###How to update code coverage report?
 
@@ -235,7 +236,8 @@ All files         |     100 |      100 |     100 |     100 |
   >>```
   > above configuration ignores all files in components folder which of ending with the pattern {types,stories,constants,test,spec}.{ts,tsx}
 
-<br />
+---
+
 ### Coverage Threshold
 
 with the below configuration in `package.json` file we can set coverage threshold
@@ -250,4 +252,86 @@ with the below configuration in `package.json` file we can set coverage threshol
       }
     }
   }
+```
+---
+
+### Assertions
+
+Assertions decide if a test passes or fails.
+
+```javascript
+expect(value) // The argument should be the value that code produces.
+```
+
+Normally, we use `expect` along with `matcher` function to assert.
+A matcher can accept optional argument which is the correct expected value.
+
+```javascript
+expect(textElement).toBeInTheDocument();
+```
+
+In this example `expect(textElement)` comes with a matcher function called `toBeInTheDocument()` which optionally accepts a parameter.
+
+#### Different Matcher Functions
+
+> reference from - https://jestjs.io/docs/using-matchers
+
+```javascript
+test('two plus two is four', () => {
+  expect(2 + 2).toBe(4);
+});
+
+/*
+    In this code, expect(2 + 2) returns an "expectation" object. 
+    You typically won't do much with these expectation objects except call matchers on them. 
+    In this code, .toBe(4) is the matcher. 
+    When Jest runs, it tracks all the failing matchers,
+    so that it can print out nice error messages for you.
+*/
+```
+<br />
+
+* `toBe` uses `Object.is` to test exact equality. 
+* If you want to check the value of an object, use `toEqual`
+* `toEqual` **recursively** checks every field of an object or array
+
+```javascript
+test('object comparision - Case sensitive', () => {
+  const data = { fname: 'Yoga' };
+  data['lname'] = 'L';
+  expect(data).toEqual({ fname: 'Yoga', lname: 'L'});
+});
+```
+
+> **Note**: `toEqual` performs case sensitive comparison.
+  In order to achieve case insensitive comparision, we need to extend the matcher function.
+
+here is an example.
+
+```javascript
+expect.extend({
+  toEqualCaseInsensitive(received, expected) {
+    const pass = JSON.stringify(received).toLowerCase() === JSON.stringify(expected).toLowerCase();
+    if (pass) {
+      return {
+        message: () => `expected ${received} not to equal ${expected} (case insensitive)`,
+        pass: true,
+      };
+    } else {
+      return {
+        message: () => `expected ${received} to equal ${expected} (case insensitive)`,
+        pass: false,
+      };
+    }
+  },
+});
+```
+Once the custom matcher is defined, we can use it in our test cases with the expect() method
+
+```javascript
+test('object comparision - Case sensitive', () => {
+  const data = { fname: 'Yoga' };
+  data['lname'] = 'L';
+  expect(data).toEqualCaseInsensitive({ fname: 'yoga', lname: 'l'});
+});
 ```
