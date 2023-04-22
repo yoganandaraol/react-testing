@@ -493,5 +493,33 @@ describe('Exception matchers', () => {
     });
 });
 ```
+
+> Matchers from jest-dom - https://github.com/testing-library/jest-dom/blob/main/README.md
+
+- Custom matchers
+  - `toBeDisabled`
+  - `toBeEnabled`
+  - `toBeEmptyDOMElement`
+  - `toBeInTheDocument`
+  - `toBeInvalid`
+  - `toBeRequired`
+  - `toBeValid`
+  - `toBeVisible`
+  - `toContainElement`
+  - `toContainHTML`
+  - `toHaveAccessibleDescription`
+  - `toHaveAccessibleName`
+  - `toHaveAttribute`
+  - `toHaveClass`
+  - `toHaveFocus`
+  - `toHaveFormValues`
+  - `toHaveStyle`
+  - `toHaveTextContent`
+  - `toHaveValue`
+  - `toHaveDisplayValue`
+  - `toBeChecked`
+  - `toBePartiallyChecked`
+  - `toHaveErrorMessage`
+
 <hr />
 
