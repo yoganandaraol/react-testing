@@ -523,3 +523,50 @@ describe('Exception matchers', () => {
 
 <hr />
 
+### What to test & not to test in react application?
+
+**Do test**:
+- to ensure component renders
+- to ensure component renders with props
+- to ensure component renders with different states
+- to ensure component reacts to events
+
+**Do not test**:
+- Unit testing implementation details
+- Unit testing third party code
+
+
+### Steps invoved for every unit test case for a react application
+- Render a react component
+- Find a dom element rendered by the react component
+- Assert the features/properties/behavior of the dom element to pass or fail a test.
+
+### RTL(React Testing Library) Queries
+
+- To render any component, we use the `render` method from React Testing Library.
+- To find a dom element from a rendered components RTL Queries are used.
+- RTL Queries are methods that RTL provides to find the elements on the page.
+- Types of queries
+  - Single Element Queries
+    - `getBy`
+    - `queryBy`
+    - `findBy`
+  - Multiple Elements Queries
+    - `getAllBy`
+    - `queryAllBy`
+    - `findAllBy`
+- These methods need to combined a suffix to complete the query.
+- The suffix can be...
+  - Role
+  - LabelText
+  - PlaceHolderText
+  - Text
+  - DisplayValue
+  - AltText
+  - Title
+  - TestId
+
+Example:
+`getBy` query returns matching dom node or throws an error if no element found.
+```javascript
+```
